@@ -65,18 +65,35 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                <?php
-    // Check if there are any rows to display
-    if ($result->num_rows > 0) {
-        // Loop through each row
-        while($row = $result->fetch_assoc()) {
-            // Output data from each row in the desired format
-            echo "<li><a href='pages/UI/general.html'><i class='fa fa-arrow-right'></i>" . $row["name"] . "</a></li>";
-        }
-    } else {
-        echo "<li>No results found.</li>";
-    }
-    ?>
+                    <?php
+                    // Check if there are any rows to display
+                    if ($result->num_rows > 0) {
+                        // Loop through each row
+                        while ($row = $result->fetch_assoc()) {
+                            // Output data from each row in the desired format
+                            echo "<li><a href='pages/UI/general.html'><i class='fa fa-arrow-right'></i>" . $row["name"] . "</a></li>";
+                        }
+                    } else {
+                        echo "<li>No results found.</li>";
+                    }
+                    ?>
+
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>Settings</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="pages/settings/main_settings.php"><i class="fa fa-arrow-right"></i>Main Settings</a></li>
+                    <li><a href="pages/UI/icons.html"><i class="fa fa-arrow-right"></i>Managers</a></li>
+                    <li><a href="pages/UI/buttons.html"><i class="fa fa-arrow-right"></i>Regional Managers</a></li>
+                </ul>
+            </li>
+
 
         </ul>
     </section>
