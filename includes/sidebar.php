@@ -26,8 +26,13 @@
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="active treeview">
-                <a href="#">
+                <a href="index.php">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span> </i>
+                </a>
+            </li>
+            <li class="active treeview">
+                <a href="bulkupload.php">
+                    <i class="fa fa-dashboard"></i> <span>Upload Worksheet</span> </i>
                 </a>
             </li>
 
@@ -38,9 +43,11 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/UI/general.html"><i class="fa fa-arrow-right"></i>Technicians</a></li>
-                    <li><a href="pages/UI/icons.html"><i class="fa fa-arrow-right"></i>Managers</a></li>
-                    <li><a href="pages/UI/buttons.html"><i class="fa fa-arrow-right"></i>Regional Managers</a></li>
+                    <li><a href="addstaff.php"><i class="fa fa-arrow-right"></i>Add Staff</a></li>
+                    <li><a href="adminlist.php"><i class="fa fa-arrow-right"></i>Admins</a></li>
+                    <li><a href="manager.php"><i class="fa fa-arrow-right"></i>Managers</a></li>
+                    <li><a href="rmlist.php"><i class="fa fa-arrow-right"></i>Regional Managers</a></li>
+                    <li><a href="techlist.php"><i class="fa fa-arrow-right"></i>Technicians</a></li>
                 </ul>
             </li>
 
@@ -88,7 +95,7 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="pages/settings/main_settings.php"><i class="fa fa-arrow-right"></i>Main Settings</a></li>
+                    <li><a href="main_settings.php"><i class="fa fa-arrow-right"></i>Main Settings</a></li>
                     <li><a href="pages/UI/icons.html"><i class="fa fa-arrow-right"></i>Managers</a></li>
                     <li><a href="pages/UI/buttons.html"><i class="fa fa-arrow-right"></i>Regional Managers</a></li>
                 </ul>
