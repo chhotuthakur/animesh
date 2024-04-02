@@ -91,24 +91,76 @@ $result = $conn->query($sql);
 
         <!-- Main row -->
         <div class="row">
-          <!-- Left col -->
-          <section class="col-lg-5 connectedSortable">
-            <!-- Custom tabs (Charts with tabs)-->
-            <div class="nav-tabs-custom">
-              <!-- Tabs within a box -->
-              <ul class="nav nav-tabs pull-right">
-                <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-                <!-- <li><a href="#sales-chart" data-toggle="tab">Donut</a></li> -->
-                <li class="pull-left header"><i class="fa fa-inbox"></i> Today's Performance</li>
-              </ul>
-              <div class="tab-content no-padding">
-                <!-- Morris chart - Sales -->
-                <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
-              </div>
-            </div><!-- /.nav-tabs-custom -->
+      
 
-          </section>
+          <section class="col-lg-12 connectedSortable">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Case Details</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Brand Name</th>
+                            <th>Case Type</th>
+                            <th>Date Attempted</th>
+                            <th>Region</th>
+                            <th>City</th>
+                            <th>Case Number</th>
+                            <th>VIN Number</th>
+                            <th>Engineer Name</th>
+                            <th>Parts Taken From</th>
+                            <th>Action Taken</th>
+                            <th>Final Status</th>
+                            <th>Remarks</th>
+                            <th>Location Type</th>
+                            <th>From Location</th>
+                            <th>Customer Location</th>
+                            <th>Total KM</th>
+                            <th>Home or EC</th>
+                            <th>JB Number</th>
+                            <th>Rectified by ECL</th>
+                            <th>Rectified by Finance Team</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Establish connection to MySQL database
+                        
+
+                       
+                        // Fetch data from database
+                        $sql = "SELECT id, brand_name, case_type, date_attempted, region, city, case_number, vin_number, engineer_name, parts_taken_from, action_taken, final_status, remarks, location_type, from_location, customer_location, total_km, home_or_ec, jb_number, rectified_by_ecl, rectified_by_finance_team, note FROM worksheet";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                foreach ($row as $value) {
+                                    echo "<td>" . $value . "</td>";
+                                }
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='22'>No data available</td></tr>";
+                        }
+
+                        // Close MySQL connection
+                        $conn->close();
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+</section>
+
           <!-- right col (We are only adding the ID to make the widgets sortable)-->
           <section class="col-lg-5 connectedSortable">
             <!-- Map box -->
@@ -148,6 +200,24 @@ $result = $conn->query($sql);
             <!-- /.box -->
 
           </section><!-- right col -->
+           <!-- Left col -->
+           <section class="col-lg-5 connectedSortable">
+            <!-- Custom tabs (Charts with tabs)-->
+            <div class="nav-tabs-custom">
+              <!-- Tabs within a box -->
+              <ul class="nav nav-tabs pull-right">
+                <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
+                <!-- <li><a href="#sales-chart" data-toggle="tab">Donut</a></li> -->
+                <li class="pull-left header"><i class="fa fa-inbox"></i> Today's Performance</li>
+              </ul>
+              <div class="tab-content no-padding">
+                <!-- Morris chart - Sales -->
+                <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
+                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+              </div>
+            </div><!-- /.nav-tabs-custom -->
+
+          </section>
           
         </div><!-- /.row (main row) -->
         
