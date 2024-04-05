@@ -25,18 +25,23 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="active treeview">
+            <li class=" treeview">
                 <a href="index.php">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span> </i>
                 </a>
             </li>
-            <li class="active treeview">
+            <li class=" treeview">
+                <a href="caselist.php">
+                    <i class="fa fa-dashboard"></i> <span>Case Managment</span> </i>
+                </a>
+            </li>
+            <li class=" treeview">
                 <a href="bulkupload.php">
-                    <i class="fa fa-dashboard"></i> <span>Upload Worksheet</span> </i>
+                    <i class="fa fa-dashboard"></i> <span>Staff Managment</span> </i>
                 </a>
             </li>
 
-            <li class="treeview">
+            <!-- <li class="treeview">
                 <a href="#">
                     <i class="fa fa-user"></i>
                     <span>Manage Staff</span>
@@ -49,7 +54,7 @@
                     <li><a href="rmlist.php"><i class="fa fa-arrow-right"></i>Regional Managers</a></li>
                     <li><a href="techlist.php"><i class="fa fa-arrow-right"></i>Technicians</a></li>
                 </ul>
-            </li>
+            </li> -->
 
 
             <li class="treeview">
@@ -65,7 +70,7 @@
                 </ul>
             </li>
 
-            <li class="treeview">
+            <!-- <li class="treeview">
                 <a href="#">
                     <i class="fa fa-motorcycle"></i>
                     <span>Two Wheelers</span>
@@ -99,7 +104,7 @@
                     <li><a href="pages/UI/icons.html"><i class="fa fa-arrow-right"></i>Managers</a></li>
                     <li><a href="pages/UI/buttons.html"><i class="fa fa-arrow-right"></i>Regional Managers</a></li>
                 </ul>
-            </li>
+            </li> -->
 
 
         </ul>

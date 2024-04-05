@@ -2,6 +2,12 @@
 require_once 'config/database.php';
 $sql = "SELECT * FROM brand_names";
 $result = $conn->query($sql);
+
+if(!isset($_SESSION['user_id'])) {
+  // User is not logged in, redirect to login page
+  header("Location: login.php");
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -96,7 +102,7 @@ $result = $conn->query($sql);
           <section class="col-lg-12 connectedSortable">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Case Details</h3>
+            <h3 class="card-title">Case List</h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -151,7 +157,7 @@ $result = $conn->query($sql);
                         }
 
                         // Close MySQL connection
-                        $conn->close();
+                        
                         ?>
                     </tbody>
                 </table>
@@ -162,62 +168,60 @@ $result = $conn->query($sql);
 </section>
 
           <!-- right col (We are only adding the ID to make the widgets sortable)-->
-          <section class="col-lg-5 connectedSortable">
-            <!-- Map box -->
-            <div class="box box-solid bg-light-blue-gradient">
-              <div class="box-header">
-                <!-- tools box -->
-                <div class="pull-right box-tools">
-                  <button class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip" title="Date range"><i class="fa fa-calendar"></i></button>
-                  <button class="btn btn-primary btn-sm pull-right" data-widget='collapse' data-toggle="tooltip" title="Collapse" style="margin-right: 5px;"><i class="fa fa-minus"></i></button>
-                </div><!-- /. tools -->
+          <section class="col-lg-12 connectedSortable">
 
-                <i class="fa fa-map-marker"></i>
-                <h3 class="box-title">
-                  Active Technicians
-                </h3>
-              </div>
-              <div class="box-body">
-                <div id="world-map" style="height: 250px; width: 100%;"></div>
-              </div><!-- /.box-body-->
-              <div class="box-footer no-border">
-                <div class="row">
-                  <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                    <div id="sparkline-1"></div>
-                    <div class="knob-label">Total</div>
-                  </div><!-- ./col -->
-                  <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                    <div id="sparkline-2"></div>
-                    <div class="knob-label">Online</div>
-                  </div><!-- ./col -->
-                  <div class="col-xs-4 text-center">
-                    <div id="sparkline-3"></div>
-                    <div class="knob-label">Offline</div>
-                  </div><!-- ./col -->
-                </div><!-- /.row -->
-              </div>
-            </div>
-            <!-- /.box -->
 
-          </section><!-- right col -->
-           <!-- Left col -->
-           <section class="col-lg-5 connectedSortable">
-            <!-- Custom tabs (Charts with tabs)-->
-            <div class="nav-tabs-custom">
-              <!-- Tabs within a box -->
-              <ul class="nav nav-tabs pull-right">
-                <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-                <!-- <li><a href="#sales-chart" data-toggle="tab">Donut</a></li> -->
-                <li class="pull-left header"><i class="fa fa-inbox"></i> Today's Performance</li>
-              </ul>
-              <div class="tab-content no-padding">
-                <!-- Morris chart - Sales -->
-                <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
-              </div>
-            </div><!-- /.nav-tabs-custom -->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Staff List</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile Number</th>
+                    <th>Role</th>
+                    <th>Date Joined</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Fetch data from database
+                $sql = "SELECT * FROM admins";
+                $result = $conn->query($sql);
 
-          </section>
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row["id"] . "</td>";
+                        echo "<td>" . $row["name"] . "</td>";
+                        echo "<td>" . $row["email"] . "</td>";
+                        echo "<td>" . $row["phone"] . "</td>";
+                        echo "<td>" . $row["role"] . "</td>";
+                        echo "<td>" . $row["date_joined"] . "</td>";
+                        echo "<td>" . $row["location"] . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='7'>No data available</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+
+
+
+
+</section>
           
         </div><!-- /.row (main row) -->
         

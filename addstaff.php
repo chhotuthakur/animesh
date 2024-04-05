@@ -52,6 +52,10 @@ $result = $conn->query($sql);
                                         <input type="email" class="form-control" id="email" name="email" placeholder="enter email">
                                     </div>
                                     <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="enter password">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="phone">Phone</label>
                                         <input type="text" class="form-control" id="phone" name="phone" placeholder="enter phone">
                                     </div>
@@ -235,11 +239,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST["name"];
     $email = $_POST["email"];
     $phone = $_POST["phone"];
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // Hash the password
     $location = $_POST["location"];
     $role = $_POST["role"];
 
     // SQL to insert data into admins table
-    $sql = "INSERT INTO admins (name, email, phone, location, role) VALUES ('$name', '$email', '$phone', '$location', '$role')";
+    $sql = "INSERT INTO admins (name, email, phone, password, location, role) VALUES ('$name', '$email', '$phone', '$password', '$location', '$role')";
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
@@ -247,7 +252,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
-
 ?>
 
 </html>

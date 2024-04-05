@@ -42,51 +42,66 @@ $result = $conn->query($sql);
                     <section class="col-lg-12 connectedSortable">
 
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Admins</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Mobile Number</th>
-                                            <th>Role</th>
-                                            <th>Date Joined</th>
-                                            <th>Location</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        // Fetch data from database
-                                        $sql = "SELECT * FROM admins where  role='Admin'";
-                                        $result = $conn->query($sql);
+                    <?php
+// Database connection
 
-                                        if ($result->num_rows > 0) {
-                                            while ($row = $result->fetch_assoc()) {
-                                                echo "<tr>";
-                                                echo "<td>" . $row["id"] . "</td>";
-                                                echo "<td>" . $row["name"] . "</td>";
-                                                echo "<td>" . $row["email"] . "</td>";
-                                                echo "<td>" . $row["phone"] . "</td>";
-                                                echo "<td>" . $row["role"] . "</td>";
-                                                echo "<td>" . $row["date_joined"] . "</td>";
-                                                echo "<td>" . $row["location"] . "</td>";
-                                                echo "</tr>";
-                                            }
-                                        } else {
-                                            echo "<tr><td colspan='7'>No data available</td></tr>";
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
+// SQL query to select data from the 'admins' table
+$sql = "SELECT id, name, email, password, phone, role, date_joined, location FROM admins";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // Output table header
+    echo "<table id='example1' class='table table-bordered table-striped'>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th>ID</th>";
+    echo "<th>Name</th>";
+    echo "<th>Email</th>";
+    echo "<th>Password</th>";
+    echo "<th>Phone</th>";
+    echo "<th>Role</th>";
+    echo "<th>Date Joined</th>";
+    echo "<th>Location</th>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+
+    // Output data of each row
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["id"] . "</td>";
+        echo "<td>" . $row["name"] . "</td>";
+        echo "<td>" . $row["email"] . "</td>";
+        echo "<td>" . $row["password"] . "</td>";
+        echo "<td>" . $row["phone"] . "</td>";
+        echo "<td>" . $row["role"] . "</td>";
+        echo "<td>" . $row["date_joined"] . "</td>";
+        echo "<td>" . $row["location"] . "</td>";
+        echo "</tr>";
+    }
+
+    echo "</tbody>";
+    // echo "<tfoot>";
+    // // echo "<tr>";
+    // // echo "<th>ID</th>";
+    // // echo "<th>Name</th>";
+    // // echo "<th>Email</th>";
+    // // echo "<th>Password</th>";
+    // // echo "<th>Phone</th>";
+    // // echo "<th>Role</th>";
+    // // echo "<th>Date Joined</th>";
+    // // echo "<th>Location</th>";
+    // // echo "</tr>";
+    // echo "</tfoot>";
+    echo "</table>";
+} else {
+    echo "0 results";
+}
+
+// Close connection
+$conn->close();
+?>
+
 
 
 
@@ -100,10 +115,16 @@ $result = $conn->query($sql);
                     </section><!-- right col -->
                 </div><!-- /.row (main row) -->
 
-            </section><!-- /.content -->
-        </div><!-- /.content-wrapper -->
-        <?php include 'includes/footer.php'; ?>
-    </div><!-- ./wrapper -->
+                </section><!-- /.content -->
+
+
+</div><!-- /.content-wrapper -->
+
+
+
+
+<?php include 'includes/footer.php'; ?>
+</div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.3 -->
     <script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
@@ -150,24 +171,34 @@ $result = $conn->query($sql);
             bsCustomFileInput.init();
         });
     </script>
-    <script>
-        $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
+    <!-- jQuery 2.1.3 -->
+    <script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- DATA TABES SCRIPT -->
+    <script src="plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+    <!-- SlimScroll -->
+    <script src="plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/app.min.js" type="text/javascript"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js" type="text/javascript"></script>
+    <!-- page script -->
+    <script type="text/javascript">
+      $(function () {
+        $("#example1").dataTable();
+        $('#example2').dataTable({
+          "bPaginate": true,
+          "bLengthChange": false,
+          "bFilter": false,
+          "bSort": true,
+          "bInfo": true,
+          "bAutoWidth": false
         });
+      });
     </script>
 
 </body>
